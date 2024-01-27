@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>ESP8266 Web Control</h1>
+
+<button onclick="forward()">forward</button>
+<button onclick="left()">left</button>
+<button onclick="right()">right</button>
+<button onclick="backwards()">backwards</button>
+<button onclick="breaks()">break</button>
+
+<script>
+function forward() {
+  fetch('/forward')
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
+}
+
+function left() {
+  fetch('/left')
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
+}
+
+function right() {
+  fetch('/right')
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
+}
+
+function backwards() {
+  fetch('/backwards')
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
+}
+
+function breaks() {
+  fetch('/breaks')
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
+}
+</script>
+
+</body>
+</html>
