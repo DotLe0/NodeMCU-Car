@@ -1,46 +1,61 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset = 'UTF-8'>
+    <meta name='viewport' content='width=device-width', initial-scale='1.0'>
+    <style>
+      button {
+        padding: 0px;
+        margin: 0px;
+        font-size: 60px;
+        width: 150px;
+        height: 150px;
+      }
+    </style>
+</head>
 <body>
 
-<h1>ESP8266 Web Control</h1>
-
-<button onclick="forward()">forward</button>
-<button onclick="left()">left</button>
-<button onclick="right()">right</button>
-<button onclick="backwards()">backwards</button>
-<button onclick="breaks()">break</button>
-
-<script>
-function forward() {
-  fetch('/forward')
-    .then(response => console.log(response))
-    .catch(error => console.error(error));
-}
-
-function left() {
-  fetch('/left')
-    .then(response => console.log(response))
-    .catch(error => console.error(error));
-}
-
-function right() {
-  fetch('/right')
-    .then(response => console.log(response))
-    .catch(error => console.error(error));
-}
-
-function backwards() {
-  fetch('/backwards')
-    .then(response => console.log(response))
-    .catch(error => console.error(error));
-}
-
-function breaks() {
-  fetch('/breaks')
-    .then(response => console.log(response))
-    .catch(error => console.error(error));
-}
-</script>
+<div align="center">
+  <h1>Контролер на количка с ESP8266</h1>
+  <hr>
+  <button onclick="forward()">&uArr;</button>
+  <button onclick="left()">&lArr;</button>
+  <button onclick="right()">&rArr;</button>
+  <button onclick="backwards()">&dArr;</button>
+  <button onclick="breaks()">break</button>
+  <hr>
+</div>
 
 </body>
+<script>
+  function forward() {
+    fetch('/forward')
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
+  }
+  
+  function left() {
+    fetch('/left')
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
+  }
+  
+  function right() {
+    fetch('/right')
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
+  }
+  
+  function backwards() {
+    fetch('/backwards')
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
+  }
+  
+  function breaks() {
+    fetch('/breaks')
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
+  }
+</script>
 </html>
