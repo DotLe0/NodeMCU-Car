@@ -23,11 +23,17 @@
   <button onclick="right()">&rArr;</button>
   <button onclick="backwards()">&dArr;</button>
   <button onclick="breaks()">break</button>
+  <button onclick="turnOn()">lights</button>
   <hr>
 </div>
 
 </body>
 <script>
+  function turnOn() {
+    fetch('/turnOn')
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
+  }
   function forward() {
     fetch('/forward')
       .then(response => console.log(response))

@@ -11,6 +11,10 @@ const int revMotorB = D4;//right reverce
 
 const int motorSpeed = 255;
 
+int WhiteLed = D7;
+int WhiteLedStatus = 0;
+int RedLed = D8;
+
 ESP8266WebServer server(80);
 
 void setup() {
@@ -35,7 +39,6 @@ void setup() {
   // Define server routes
   server.on("/", HTTP_GET, handleRoot);
   server.on("/turnOn", HTTP_GET, handleTurnOn);
-  server.on("/turnOff", HTTP_GET, handleTurnOff);
   server.on("/forward", HTTP_GET, handelForward);
   server.on("/backwards", HTTP_GET, handelBackwards);
   server.on("/left", HTTP_GET, handelLeft);
@@ -47,7 +50,8 @@ void setup() {
   pinMode(motorB, OUTPUT);
   pinMode(revMotorA, OUTPUT);
   pinMode(revMotorB, OUTPUT);
-
+  pinMode(WhiteLed, OUTPUT);
+  pinMode(RedLed, OUTPUT);
   // Start server
   server.begin();
 }
@@ -73,13 +77,18 @@ void handleRoot() {
 void handleTurnOn() {
   // Add code to turn on your device or perform a specific action
   server.send(200, "text/plain", "Turned on!");
-  Serial.println("Turn ON");
-}
 
-void handleTurnOff() {
-  // Add code to turn off your device or perform a specific action
-  server.send(200, "text/plain", "Turned off!");
-  Serial.println("Turn OFF");
+  if(WhiteLedStatus == 0){
+    digitalWrite(WhiteLed, HIGH);
+    WhiteLedStatus = 1;
+  }
+  else {
+    digitalWrite(WhiteLed, LOW);
+    WhiteLedStatus = 0;
+  }
+  
+
+  Serial.println("Turn ON");
 }
 
 void handelForward() {
@@ -130,10 +139,15 @@ void handelRight() {
 void handelBreaks() {
   server.send(200, "text/plain", "breaks");
   Serial.println("breaks!");
-
+  
+  digitalWrite(RedLed, HIGH);
+  
   analogWrite(motorA, LOW);
   digitalWrite(revMotorA, LOW);
 
   analogWrite(motorB, LOW);
   digitalWrite(revMotorB, LOW);
+
+  delay(200);
+  digitalWrite(RedLed, LOW);
 }
